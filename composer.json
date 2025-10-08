@@ -1,0 +1,56 @@
+{
+    "name": "dgtlinf/passwordless",
+    "description": "Headless Laravel package for passwordless authentication via magic link or OTP code",
+    "keywords": [
+        "laravel",
+        "otp",
+        "passwordless",
+        "auth"
+    ],
+    "type": "library",
+    "require": {
+        "php": "^8.2",
+        "spatie/laravel-package-tools": "^1.92",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^10.0|^11.0|^12.0",
+        "pestphp/pest": "^4.1",
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "orchestra/testbench": "^10.6"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dgtlinf\\Passwordless\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dgtlinf\\Passwordless\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dgtlinf\\Passwordless\\PasswordlessServiceProvider"
+            ],
+            "aliases": {
+                "Passwordless": "Dgtlinf\\Passwordless\\Facades\\Passwordless"
+            }
+        }
+    },
+    "authors": [
+        {
+            "name": "Digital Infinity",
+            "email": "goran@digitalinfinity.rs"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
