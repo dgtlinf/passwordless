@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.0.3 - 2025-10-13
+
+### v1.0.3 — Passwordless Tokens Refactor
+
+This release updates internal naming to avoid conflicts with Laravel Sanctum.
+All token-related methods are now clearly prefixed with *passwordless* for better clarity and consistency.
+No functional changes or breaking updates were introduced.
+
 ## v1.0.1 - 2025-10-09
 
 ### v1.0.1 — Documentation Update
@@ -11,6 +19,7 @@ This update improves the documentation for the **dgtlinf/passwordless** package.
 #### ✍️ What's new
 
 - Added full README documentation:
+  
   - Detailed configuration examples
   - Usage instructions for OTP and magic links
   - Event list (`PasswordlessTokenCreated`, `PasswordlessTokenConsumed`, `PasswordlessLoginSucceeded`)
@@ -18,6 +27,7 @@ This update improves the documentation for the **dgtlinf/passwordless** package.
   - CI, tests, and setup instructions
   
 - Polished structure and formatting for GitHub and Packagist display
+  
 
 No code or behavioral changes were introduced — functionality remains identical to v1.0.0.
 
