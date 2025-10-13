@@ -20,8 +20,8 @@ class PasswordlessManager
         $notificationClass = config('passwordless.notification.class');
 
         // clean old tokens for this user
-        if (method_exists($user, 'invalidateTokens')) {
-            $user->invalidateTokens();
+        if (method_exists($user, 'invalidatePasswordlessTokens')) {
+            $user->invalidatePasswordlessTokens();
         } else {
             app($tokenModel)::where('user_id', $user->getAuthIdentifier())->active()->delete();
         }
@@ -55,8 +55,8 @@ class PasswordlessManager
     {
         $tokenModel = config('passwordless.models.token');
 
-        $token = method_exists($user, 'latestActiveToken')
-            ? $user->latestActiveToken()
+        $token = method_exists($user, 'latestActivePasswordlessToken')
+            ? $user->latestActivePasswordlessToken()
             : app($tokenModel)::where('user_id', $user->getAuthIdentifier())
                 ->active()
                 ->latest('created_at')

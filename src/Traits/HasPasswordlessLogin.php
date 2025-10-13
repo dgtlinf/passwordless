@@ -23,7 +23,7 @@ trait HasPasswordlessLogin
     /**
      * Relation to the PasswordlessToken model defined in config.
      */
-    public function tokens(): HasMany
+    public function passwordlessTokens(): HasMany
     {
         $model = config('passwordless.models.token');
 
@@ -44,17 +44,17 @@ trait HasPasswordlessLogin
     /**
      * Helper: delete all tokens for this user.
      */
-    public function invalidateTokens(): void
+    public function invalidatePasswordlessTokens(): void
     {
-        $this->tokens()->delete();
+        $this->passwordlessTokens()->delete();
     }
 
     /**
      * Helper: get latest active token (for inspection or custom checks).
      */
-    public function latestActiveToken()
+    public function latestActivePasswordlessToken()
     {
-        return $this->tokens()
+        return $this->passwordlessTokens()
             ->active()
             ->latest('created_at')
             ->first();
