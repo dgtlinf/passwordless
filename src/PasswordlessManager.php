@@ -29,11 +29,13 @@ class PasswordlessManager
         // generate raw otp
         $otp = $this->generateOtp();
 
-        // create new token record
-        /** @var \Illuminate\Database\Eloquent\Model $token */
+        // generate raw token
+        $rawToken = Str::random(config('passwordless.link.token_length', 64));
+
+        // create new token record (store only hashed)
         $token = app($tokenModel)::create([
             'user_id'    => $user->getAuthIdentifier(),
-            'token'      => hash('sha256', Str::random(config('passwordless.link.token_length', 64))),
+            'token'      => hash('sha256', $rawToken),
             'otp_code'   => Hash::make($otp),
             'expires_at' => $tokenModel::generateExpiration('link'),
             'ip_address' => request()?->ip(),
@@ -42,8 +44,8 @@ class PasswordlessManager
 
         event(new PasswordlessTokenCreated($user, $token, $otp));
 
-        // send notification via configured class
-        $user->notify(new $notificationClass($token, $otp));
+        // send notification with raw token
+        $user->notify(new $notificationClass($token, $otp, $rawToken));
 
         return $token;
     }

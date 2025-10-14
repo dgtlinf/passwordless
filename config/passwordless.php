@@ -84,13 +84,11 @@ return [
     | The user can click the link instead of entering an OTP code.
     |
     | expires_in: Link validity in minutes.
-    | route: The named route that will handle verification.
     | token_length: Length of the generated token (hashed before storage).
     |
     */
     'link' => [
         'expires_in' => 30,
-        'route' => 'auth.magic',
         'token_length' => 64,
     ],
 
