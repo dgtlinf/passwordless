@@ -22,10 +22,17 @@ class PasswordlessLoginNotification extends Notification
      */
     public string $otp;
 
-    public function __construct($token, string $otp)
+
+    /**
+     * @var string The raw (unhashed) Token.
+     */
+    public string $rawToken;
+
+    public function __construct($token, string $otp, ?string $rawToken = null)
     {
         $this->token = $token;
         $this->otp = $otp;
+        $this->rawToken = $rawToken ?? $token->token;
     }
 
     /**
@@ -62,7 +69,7 @@ class PasswordlessLoginNotification extends Notification
     protected function buildMagicLink($notifiable, ?string $routeName = null): string
     {
         $route = $routeName ?? 'passwordless.magic';
-        $tokenValue = $this->token->token;
+        $tokenValue = $this->rawToken;
 
         if (Str::startsWith($route, ['http://', 'https://'])) {
             return Str::of($route)
