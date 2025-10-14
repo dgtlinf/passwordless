@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.0.4 - 2025-10-14
+
+This release fixes the passwordless magic link verification issue caused by double hashing.
+Now the notification sends the raw token while securely storing the hashed version in the database, ensuring consistent verification and successful login flow.
+
 ## v1.0.3 - 2025-10-13
 
 ### v1.0.3 — Passwordless Tokens Refactor
